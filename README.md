@@ -109,7 +109,7 @@ I administrationsdelen finns möjlighet att moderera de inkommande synpunkterna 
 
 Om det har genomförts en fysisk enkät i särskilda områden kan svaren från enkäten matas in i ett separat formulär.
 
-> Admin sidan får inte kommas åt från publika internet det är väldigt engel lösenords hantering
+> Admin sidan får inte kommas åt från publika internet det är väldigt enkel lösenords hantering
  
 ![Admin1](Admin1.png)
 ![Admin2](Admin2.png)
