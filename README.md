@@ -64,6 +64,7 @@ Byt ut filen [Stadsdelar.json](/src/Stadsdelsdialog.Web/wwwroot/data/Stadsdelar.
 I detta projekt ingår inget medföljande bildmaterial, vilket innebär att ni själva behöver skapa och tillhandahålla eventuella bilder.
 
 >För Admin kolla vilka bilder som måste finnas se [bilder](/src/Stadsdelsdialog.Admin/wwwroot/img/README.md)
+
 >För Web kolla vilka bilder som måste finnas se [bilder](/src/Stadsdelsdialog.Web/wwwroot/img/README.md)
 ## Bakgrundskartan
 För att ändra bakgrundskartan så måste man ändra i [src/Stadsdelsdialog.Web/wwwroot/js/app.ts](/src/Stadsdelsdialog.Web/wwwroot/js/app.ts) i funktionen CreateMap:
