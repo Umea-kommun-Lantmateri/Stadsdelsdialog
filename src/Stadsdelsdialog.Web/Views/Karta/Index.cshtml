@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "_Layout2";
+}
+
+@section CSS {
+    <link rel="preconnect" href="https://wms.umea.se" crossorigin />
+
+    <link href="~/css/Karta.css" rel="stylesheet" asp-append-version="true" />
+}
+
+<div class="mapButton" id="ZoomPlus"><img title="Zooma in" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAAAAADFHGIkAAAAAnRSTlMA/1uRIrUAAAAjSURBVHgBY/iPA9BZ4o27+5vBIgERYkACQGlcEoPXHwMatQB6vg/DnGukgQAAAABJRU5ErkJggg==" alt="Zooma in" /></div>
+<div class="mapButton" id="ZoomMinus"><img title="Zooma ut" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAAAAADFHGIkAAAAAnRSTlMA/1uRIrUAAAAbSURBVHgBY/iPA4xwiTfuDEjA/Q0BCTQwGogAyWgiy5/WMw8AAAAASUVORK5CYII=" alt="Zooma ut" /></div>
+
+<div id="map" data-icon="icon-sad">
+    <div id="Info">
+        <div class="body">
+            <div class="question"></div>
+            <div class="text"></div>
+            <div><span class="date"></span><span id="Anmal">Anmäl</span></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="Stadsdelar-wrepper">
+    <div class="body">
+        <select id="Stadsdelar"></select>
+    </div>
+</div>
+
+@section JS {
+    <script src="~/js/proj4-src.min.js" asp-append-version="true"></script>
+    <script src="~/js/ol.v5.3.0.min.js" asp-append-version="true"></script>
+    <script src="~/js/network.js" asp-append-version="true"></script>
+    <script src="~/js/map.js" asp-append-version="true"></script>
+    <script src="~/js/moment.js" asp-append-version="true"></script>
+    <script src="~/js/moment-sv.js" asp-append-version="true"></script>
+    <script src="~/js/Karta.js" asp-append-version="true"></script>
+}

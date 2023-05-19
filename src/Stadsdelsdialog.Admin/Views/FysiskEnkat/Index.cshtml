@@ -1,0 +1,102 @@
+﻿<div class="page">
+    <h1>Fysisk Enkät</h1>
+    <br />
+    <div id="map"></div>
+    <button class="btn" id="GoodPoint">Bra</button>
+    <button class="btn" id="BadPoint">Dåligt</button>
+    <br /><br />
+    <form method="post" asp-controller="FysiskEnkat" asp-action="Stadsdel20" class="group">
+        <h2>Vad skulle du önska för din stadsdel om 20 år?</h2>
+        <textarea name="text"></textarea>
+        <select id="Stadsdel20Stadsdel" name="stadsdel">
+            <option value="">Ej valt</option>
+        </select>
+        <br />
+        <br />
+        <button class="btn" id="Stadsdel20">Spara</button>
+    </form>
+    <br /><br />
+    <form method="post" asp-controller="FysiskEnkat" asp-action="Saknade" class="group">
+        <h2>Vad skulle du sakna mest, med din stadsdel, om du flyttade?</h2>
+        <label class="container">
+            <span class="text">Grannarna</span>
+            <input type="checkbox" name="checkbox1" value="Grannarna" />
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">
+            Naturen
+            <input type="checkbox" name="checkbox2" value="Naturen" />
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">
+            Lugnet
+            <input type="checkbox" name="checkbox3" value="Lugnet" />
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">
+            Tryggheten
+            <input type="checkbox" name="checkbox4" value="Tryggheten" />
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">
+            Uteplatserna/mötesplatser i utemiljön
+            <input type="checkbox" name="checkbox5" value="Uteplatserna/mötesplatser i utemiljön" />
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">
+            Den speciella stämningen/andan/atmosfär som finns här
+            <input type="checkbox" name="checkbox6" value="Den speciella stämningen/andan/atmosfär som finns här" />
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">
+            Servicen i närheten (tex butiker)
+            <input type="checkbox" name="checkbox7" value="Servicen i närheten (tex butiker)" />
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">
+            Kulturutbudet (tex bibliotek, folkets hus osv)
+            <input type="checkbox" name="checkbox8" value="Kulturutbudet (tex bibliotek, folkets hus osv)" />
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">
+            Föreningar och grupper i området
+            <input type="checkbox" name="checkbox9" value="Föreningar och grupper i området" />
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">
+            Det egna hemmet
+            <input type="checkbox" name="checkbox10" value="Det egna hemmet" />
+            <span class="checkmark"></span>
+        </label>
+        <select id="saknaStadsdel" name="stadsdel">
+            <option value="">Ej valt</option>
+        </select>
+        <br />
+        <br />
+        <button class="btn" id="Stadsdel20">Spara</button>
+    </form>
+</div>
+
+<div id="PointDialogBra" class="Dialog">
+    <div class="body">
+        <h2>Var i din stadsdel trivs du bäst?</h2>
+        <textarea id="PointDialogBraText" data-value="(Synpunkt inkommen från fysisk dialog)">(Synpunkt inkommen från fysisk dialog)</textarea>
+        <button class="btn" id="PointDialogBraSave">Spara</button>
+        <button class="btn" id="PointDialogBraClose">Avbryt</button>
+    </div>
+</div>
+
+<div id="PointDialogDaligt" class="Dialog">
+    <div class="body">
+        <h2>Vilka platser trivs du inte på?</h2>
+        <textarea id="PointDialogDaligtText" data-value="(Synpunkt inkommen från fysisk dialog)">(Synpunkt inkommen från fysisk dialog)</textarea>
+        <button class="btn" id="PointDialogDaligtSave">Spara</button>
+        <button class="btn" id="PointDialogDaligtClose">Avbryt</button>
+    </div>
+</div>
+
+<script src="~/js/network.js" asp-append-version="true"></script>
+<script src="~/js/ol.v5.3.0.min.js" asp-append-version="true"></script>
+<script src="~/js/proj4-src.min.js" asp-append-version="true"></script>
+<script src="~/js/map.js" asp-append-version="true"></script>
+<script src="~/js/FysiskEnkat.js" asp-append-version="true"></script>

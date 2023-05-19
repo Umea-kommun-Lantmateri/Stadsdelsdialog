@@ -1,0 +1,384 @@
+﻿@model HomeModel
+
+@{
+
+    ViewData["Title"] = "Projektkarta Admin";
+
+
+
+    var points = Model.Points;
+
+    var TotalStats = Model.TotalStats;
+
+    List<Stadsdelsdialog.Domain.Day> Days = new List<Stadsdelsdialog.Domain.Day>();
+
+    foreach (var item in points)
+    {
+        string Datum = item.Created.Split(" ")[0];
+
+        item.Created = item.Created.Split(" ")[1];
+
+        bool exist = false;
+
+        foreach (var d in Days)
+        {
+            if (d.Datum == Datum)
+            {
+                d.Questions.Add(item);
+                exist = true;
+                break;
+            }
+        }
+
+        if (exist == false)
+        {
+            var arr = new List<Stadsdelsdialog.Domain.QuestionItem>();
+            arr.Add(item);
+
+            Days.Add(new Stadsdelsdialog.Domain.Day() { Datum = Datum, Questions = arr });
+        }
+    }
+}
+
+<div id="AutoHideWrepper">
+    <div class="body">
+        <h1>Auto göm ord som inte får förekomma i kommentarer</h1>
+
+        <form asp-controller="Home" asp-action="AddWord" method="post">
+            <h3>Lägg till ord</h3>
+            <input type="text" name="ord" value="" autocomplete="off" />
+            <input type="submit" value="Lägg till" />
+        </form>
+        <table>
+            <tr>
+                <th>Ord</th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.Words)
+            {
+                <tr>
+                    <td>@item.Ord</td>
+                    <td><a class="btn delete" asp-controller="Home" asp-action="DeleteWord" asp-route-id="@item.ID">Ta bort</a></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+
+<div class="page">
+
+    <button class="btn" id="AutoHideBtn">Auto göm ord</button>
+    <a class="btn" href="~/FysiskEnkat">Fysisk Enkät</a>
+    <br />
+    <br />
+    <br />
+    <div>
+        Totalt antal: @(TotalStats.Total)st <span class="tag">Bra: @TotalStats.Good</span><span class="tag">Dåligt: @TotalStats.Bad</span><span class="tag">Om 20år: @TotalStats.Om20</span><span class="tag">Inskickad: @TotalStats.InSkickat.Count</span>
+
+        <div id="Alder" class="Chart" data-json="AlderData" data-title="Hur gammal är du?"></div>
+
+
+        @{
+
+            List<string> de = new List<string>();
+            List<Stadsdelsdialog.Domain.ChartISeries> series = new List<Stadsdelsdialog.Domain.ChartISeries>();
+
+            foreach (var al in TotalStats.Alder)
+            {
+                bool exist = false;
+
+                foreach (var item in series)
+                {
+                    if (item.name == (string)al[2])
+                    {
+                        exist = true;
+
+                        foreach (var d in item.data)
+                        {
+                            if (d.name == (string)al[0])
+                            {
+                                d.y = (int)al[1];
+                            }
+                        }
+                    }
+                }
+
+                if (exist == false)
+                {
+                    var dd = new List<Stadsdelsdialog.Domain.ChartISeriesData>();
+                    dd.Add(new Stadsdelsdialog.Domain.ChartISeriesData() { name = "0-12", y = 0 });
+                    dd.Add(new Stadsdelsdialog.Domain.ChartISeriesData() { name = "13-18", y = 0 });
+                    dd.Add(new Stadsdelsdialog.Domain.ChartISeriesData() { name = "19-24", y = 0 });
+                    dd.Add(new Stadsdelsdialog.Domain.ChartISeriesData() { name = "25-34", y = 0 });
+                    dd.Add(new Stadsdelsdialog.Domain.ChartISeriesData() { name = "35-44", y = 0 });
+                    dd.Add(new Stadsdelsdialog.Domain.ChartISeriesData() { name = "45-54", y = 0 });
+                    dd.Add(new Stadsdelsdialog.Domain.ChartISeriesData() { name = "55-64", y = 0 });
+                    dd.Add(new Stadsdelsdialog.Domain.ChartISeriesData() { name = "65-79", y = 0 });
+                    dd.Add(new Stadsdelsdialog.Domain.ChartISeriesData() { name = "80+", y = 0 });
+
+                    foreach (var d in dd)
+                    {
+                        if (d.name == al[0])
+                        {
+                            d.y = (int)al[1];
+                        }
+                    }
+
+                    var ss = new Stadsdelsdialog.Domain.ChartISeries() { name = (string)al[2], data = dd };
+
+                    if (ss.name == "Kvinna")
+                    {
+                        ss.color = "#d602ee";
+                    }
+                    else if (ss.name == "Man")
+                    {
+                        ss.color = "#021aee";
+                    }
+
+                    series.Add(ss);
+
+                }
+
+            }
+
+        }
+
+        <script type="application/json" id="AlderData">
+            @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(series))
+        </script>
+
+
+    </div>
+
+    <hr />
+
+    <div>
+        @{
+            foreach (var item in Model.TotalStats.Stats_kategori)
+            {
+                <div class="tag">@item[0]: @(item[2])</div>
+            }
+        }
+
+        <div id="Kategorier" class="Chart" data-json="KategorierData" data-title="Kategorier"></div>
+
+        @{
+            var Stats_kategori_series = new List<Stadsdelsdialog.Domain.ChartISeries>();
+
+            foreach (var item in TotalStats.Stats_kategori)
+            {
+                bool exist = false;
+
+                foreach (var s in Stats_kategori_series)
+                {
+                    if (s.name == item[1])
+                    {
+                        exist = true;
+                        s.data.Add(new Stadsdelsdialog.Domain.ChartISeriesData() { name = (string)item[0], y = (int)item[2] });
+                    }
+                }
+
+                if (exist == false)
+                {
+                    var ss = new Stadsdelsdialog.Domain.ChartISeries();
+                    ss.name = (string)item[1];
+
+                    if (item[1] == "Var i din stadsdel trivs du bäst?")
+                    {
+                        ss.color = "#00FF00";
+                    }
+
+                    if (item[1] == "Vilka platser trivs du inte på?")
+                    {
+                        ss.color = "#FF0000";
+                    }
+
+                    ss.data.Add(new Stadsdelsdialog.Domain.ChartISeriesData() { name = (string)item[0], y = (int)item[2] });
+                    Stats_kategori_series.Add(ss);
+                }
+            }
+        }
+
+        <script type="application/json" id="KategorierData">
+            @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Stats_kategori_series))
+        </script>
+    </div>
+
+    <hr />
+
+    <div>
+        <h2> Gå till</h2>
+        @{
+            foreach (var item in Days)
+            {
+                <a class="btn" href="~/#@item.Datum">@item.Datum</a>
+            }
+        }
+    </div>
+
+    <hr />
+
+    <div class="center">
+        <br />
+        Sidor:
+        @{
+            for (int i = 0; i < (TotalStats.Total / Model.PageSize); i++)
+            {
+                <a class="btn @Stadsdelsdialog.Application.Tools.IfWrite(i.ToString() == ViewData["Page"], "selected", "")" href="~/?Page=@(i + 1)">@(i + 1)</a>
+            }
+        }
+    </div>
+
+    <hr />
+
+    @{
+        foreach (var item in Days)
+        {
+            int Bra = 0;
+            int dåligt = 0;
+            int Om20 = 0;
+            List<string> InSkickat = new List<string>();
+            List<object[]> Stats_kategori = new List<object[]>();
+
+            foreach (var q in item.Questions)
+            {
+                if (q.Question == "Vilka platser trivs du inte på?")
+                    dåligt += 1;
+                if (q.Question == "Var i din stadsdel trivs du bäst?")
+                    Bra += 1;
+                if (q.Question == "Vad skulle du önska för din stadsdel om 20 år?")
+                    Om20 += 1;
+
+                bool ex = false;
+                foreach (var sk in InSkickat)
+                {
+                    if (q.UserID == sk)
+                        ex = true;
+                }
+
+                if (ex == false)
+                    InSkickat.Add(q.UserID);
+
+                if (q.Stats_kategori != "")
+                {
+                    bool Stats_kategori_Exist = false;
+                    foreach (var sk in Stats_kategori)
+                    {
+                        if (q.Stats_kategori == (string)sk[0])
+                        {
+                            int value = (int)sk[1];
+                            sk[1] = value + 1;
+                            Stats_kategori_Exist = true;
+                            break;
+                        }
+                    }
+
+                    if (Stats_kategori_Exist == false)
+                        Stats_kategori.Add(new object[] { q.Stats_kategori, 1 });
+                }
+            }
+
+            <br />
+            <a name="@item.Datum" />
+            <h2>
+                @item.Datum (@(item.Questions.Count)st) <span class="tag base">Bra: @Bra</span><span class="tag base">Dåligt: @dåligt</span><span class="tag base">Om 20år: @Om20</span><span class="tag base">Inskickad: @InSkickat.Count</span>
+
+                @foreach (object[] tag in Stats_kategori)
+                {
+                    <span class="tag">@tag[0]: @(tag[1])</span>
+                }
+            </h2>
+
+            <table>
+                <tr>
+                    <th style="min-width: 300px;"> Text</th>
+                    <th style="width: 78px;"> Datum</th>
+                    <th style="width: 82px;"> Kategori</th>
+                    <th style="width: 82px;"></th>
+                </tr>
+
+                @foreach (var d in item.Questions)
+                {
+
+                    <tr>
+                        <td class="@Stadsdelsdialog.Application.Tools.IfWrite(d.Question == "Var i din stadsdel trivs du bäst?" || d.Question == "Vad skulle du önska för din stadsdel om 20 år?", "Good", "Bad")">
+                            <div class="q">@d.Question<a target="_blank" href="https://kartor.umea.se/projektkarta_enkat/karta?stadsdel=@(d.Stadsdel)" title="öppna karta över @d.Stadsdel" class="tag small">@d.Stadsdel</a></div>
+                            <div>@d.value</div>
+                        </td>
+                        <td>@d.Created</td>
+                        <td>
+
+                            @if (d.Question == "Var i din stadsdel trivs du bäst?")
+                            {
+
+                                <select style="width: 144px;" class="Stats_kategori" data-id="@d.ID">
+                                    <!option value="" @Html.Raw(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "", "selected", ""))>Ej valt</!option>
+                                    <!option value="Lugnt och tryggt" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Lugnt och tryggt", "selected", ""))>Lugnt och tryggt</!option>
+                                    <!option value="Naturen" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Naturen", "selected", ""))>Naturen</!option>
+                                    <!option value="Gestaltning, utemiljö" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Gestaltning, utemiljö", "selected", ""))>Gestaltning, utemiljö</!option>
+                                    <!option value="Hemmet" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Hemmet", "selected", ""))>Hemmet</!option>
+                                    <!option value="Service, närhet" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Service, närhet", "selected", ""))>Service, närhet</!option>
+                                    <!option value="Övrigt" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Övrigt", "selected", ""))>Övrigt</!option>
+
+                                </select>
+
+                            }
+                            else if (d.Question == "Vilka platser trivs du inte på?")
+                            {
+
+                                <select style="width: 144px;" class="Stats_kategori" data-id="@d.ID">
+                                    <!option value="" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "", "selected", ""))>Ej valt</!option>
+                                    <!option value="Trafik" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Trafik", "selected", ""))>Trafik</!option>
+                                    <!option value="Folk (inkl. ordningsfrågor)" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Folk (inkl. ordningsfrågor)", "selected", ""))>Folk (inkl. ordningsfrågor)</!option>
+                                    <!option value="Transformation (inkl. nimby)" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Transformation (inkl. nimby)", "selected", ""))>Transformation (inkl. nimby)</!option>
+                                    <!option value="Mörker, otrygghet, läskigt" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Mörker, otrygghet, läskigt", "selected", ""))>Mörker, otrygghet, läskigt</!option>
+                                    <!option value="Om stadslivet (för tätt, för öde)" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Om stadslivet (för tätt, för öde)", "selected", ""))>Om stadslivet (för tätt, för öde)</!option>
+                                    <!option value="Övrigt" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Övrigt", "selected", ""))>Övrigt</!option>
+                                </select>
+
+                            }
+                            else if (d.Question == "Vad skulle du önska för din stadsdel om 20 år?")
+                            {
+
+                                <select style="width: 144px;" class="Stats_kategori" data-id="@d.ID">
+                                    <!option value="" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "", "selected", ""))>Ej valt</!option>
+                                    <!option value="Bevara (grönt, bygg inte mer etc)" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Bevara (grönt, bygg inte mer etc)", "selected", ""))>1. Bevara (grönt, bygg inte mer etc)</!option>
+                                    <!option value="Förbättra/utveckla (olika förslag)" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Förbättra/utveckla (olika förslag)", "selected", ""))>2. Förbättra/utveckla (olika förslag)</!option>
+                                    <!option value="Mix av punkt 1 och 2" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Mix av punkt 1 och 2", "selected", ""))>3.	Mix av punkt 1 och 2</!option>
+                                    <!option value="Missnöje, enstaka problem som bör åtgärdas" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Missnöje, enstaka problem som bör åtgärdas", "selected", ""))>4. Missnöje, enstaka problem som bör åtgärdas</!option>
+                                    <!option value="Annat" @(Stadsdelsdialog.Application.Tools.IfWrite(d.Stats_kategori == "Annat", "selected", ""))>5. Annat</!option>
+                                </select>
+                            }
+                        </td>
+                        <td>
+
+                            @if (d.Show == 1){
+                            <button class="HideButton btn" id="HideButton@(d.ID)" data-id="@d.ID">Visa inte</button>
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        }
+    }
+
+
+
+
+    <br />
+
+    <br />
+    Sidor:
+    @for (int i = 0; i < TotalStats.Total / Model.PageSize; i++){
+        <a class="btn @Stadsdelsdialog.Application.Tools.IfWrite(i.ToString() == ViewData["Page"], "selected", "")" href="~/?Page=@(i + 1)">@(i + 1)</a>
+    }
+
+</div>
+
+<script src="~/js/network.js" asp-append-version="true"></script>
+<script src="~/js/app.js" asp-append-version="true"></script>

@@ -1,0 +1,25 @@
+﻿<form id="LoginForm" asp-controller="Login" asp-action="Create" method="post">
+    <h1>Logga in</h1>
+    <div class="padding15">
+        <table>
+            <tr>
+                <td class="text">Användarnamn:</td>
+                <td><input type="text" name="username" value="" tabindex="-1" autofocus /></td>
+            </tr>
+            <tr>
+                <td class="text">Lösenord:</td>
+                <td><input type="password" name="password" value="" tabindex="0" /></td>
+            </tr>
+
+            @if (ViewBag.Errors == 1)
+            {
+                <tr>
+                    <td colspan="2" class="error">Du har skrivit fel användarnamn eller lösenord!</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="2"><input type="submit" id="Login" value="Logga in" tabindex="1" /></td>
+            </tr>
+        </table>
+    </div>
+</form>

@@ -1,0 +1,89 @@
+﻿@using Stadsdelsdialog.Application;
+@model List<Stadsdelsdialog.Domain.StatsItem>
+@{
+    Layout = "_Layout2";
+    ViewData["Title"] = "Tyck till om din stadsdel Statistik";
+
+    var Stats = Model;
+}
+
+@section CSS {
+    <link href="~/css/Stats.css" rel="stylesheet" asp-append-version="true" />
+}
+
+
+<div class="center">
+    <h1>Detta skulle vi sakna mest från vår stadsdel</h1>
+</div>
+
+
+<div class="center">
+    <div class="row">
+        <div class="cel">
+            <img src="~/img/Stats/Grannarna.svg" alt="Grannarna" />
+            <div class="pros" data-type="Grannarna">@(Tools.GetStat(Stats, "Umeå kommun", "Grannarna"))%</div>
+            <div class="typ">Grannarna</div>
+        </div>
+        <div class="cel">
+            <img src="~/img/Stats/Naturen.svg" alt="Naturen" />
+            <div class="pros" data-type="Naturen">@(Tools.GetStat(Stats, "Umeå kommun", "Naturen"))%</div>
+            <div class="typ">Naturen</div>
+        </div>
+        <div class="cel">
+            <img src="~/img/Stats/Lugnet.svg" alt="Lugnet" />
+            <div class="pros" data-type="Lugnet">@(Tools.GetStat(Stats, "Umeå kommun", "Lugnet"))%</div>
+            <div class="typ">Lugnet</div>
+        </div>
+        <div class="cel">
+            <img src="~/img/Stats/Tryggheten.svg" alt="Tryggheten" />
+            <div class="pros" data-type="Tryggheten">@(Tools.GetStat(Stats, "Umeå kommun", "Tryggheten"))%</div>
+            <div class="typ">Tryggheten</div>
+        </div>
+        <div class="cel">
+            <img src="~/img/Stats/motesplatser.svg" alt="Uteplatserna, mötesplatser i utemiljön" />
+            <div class="pros" data-type="Uteplatserna/mötesplatser i utemiljön">@(Tools.GetStat(Stats, "Umeå kommun", "Uteplatserna/mötesplatser i utemiljön"))%</div>
+            <div class="typ">Uteplatserna, mötesplatser i utemiljön</div>
+        </div>
+        <div class="cel">
+            <img src="~/img/Stats/Speciell_stamning.svg" alt="Den speciella stämningen, andan, atmosfär som finns här" />
+            <div class="pros" data-type="Den speciella stämningen/andan/atmosfär som finns här">@(Tools.GetStat(Stats, "Umeå kommun", "Den speciella stämningen/andan/atmosfär som finns här"))%</div>
+            <div class="typ">Den speciella stämningen, andan, atmosfär som finns här</div>
+        </div>
+        <div class="cel">
+            <img src="~/img/Stats/Service_i_narheten.svg" alt="Servicen i närheten (tex butiker)" />
+            <div class="pros" data-type="Servicen i närheten (tex butiker)">@(Tools.GetStat(Stats, "Umeå kommun", "Servicen i närheten (tex butiker)"))%</div>
+            <div class="typ">Servicen i närheten (tex butiker)</div>
+        </div>
+        <div class="cel">
+            <img src="~/img/Stats/Kulturutbudet.svg" alt="Kulturutbudet (tex bibliotek, folkets hus osv)" />
+            <div class="pros" data-type="Kulturutbudet (tex bibliotek, folkets hus osv)">@(Tools.GetStat(Stats, "Umeå kommun", "Kulturutbudet (tex bibliotek, folkets hus osv)"))%</div>
+            <div class="typ">Kulturutbudet (tex bibliotek, folkets hus osv)</div>
+        </div>
+        <div class="cel">
+            <img src="~/img/Stats/Grupper.svg" alt="Föreningar och grupper i området" />
+            <div class="pros" data-type="Föreningar och grupper i området">@(Tools.GetStat(Stats, "Umeå kommun", "Föreningar och grupper i området"))%</div>
+            <div class="typ">Föreningar och grupper i området</div>
+        </div>
+        <div class="cel">
+            <img src="~/img/Stats/Det_egna_hemmet.svg" alt="Det egna hemmet" />
+            <div class="pros" data-type="Det egna hemmet">@(Tools.GetStat(Stats, "Umeå kommun", "Det egna hemmet"))%</div>
+            <div class="typ">Det egna hemmet</div>
+        </div>
+        <div class="cel">
+            <img src="~/img/Stats/Annat.svg" alt="Annat" />
+            <div class="pros" data-type="Annat">@(Tools.GetStat(Stats, "Umeå kommun", "Annat"))%</div>
+            <div class="typ">Annat</div>
+        </div>
+    </div>
+</div>
+
+<div class="Stadsdelar-wrepper">
+    <div class="body">
+        <select id="Stadsdelar" aria-label="Stadsdel"></select>
+    </div>
+</div>
+
+@section JS {
+    <script src="~/js/network.js" asp-append-version="true"></script>
+    <script src="~/js/Stats.js" asp-append-version="true"></script>
+}

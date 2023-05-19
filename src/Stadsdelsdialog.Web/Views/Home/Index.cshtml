@@ -1,0 +1,360 @@
+﻿@{
+    ViewData["Title"] = "Tyck till om din stadsdel - Umeå Kommun";
+}
+
+
+<div class="page page1 show" data-normalquestion="false">
+
+    <div class="row">
+        <div class="cel icon"><img src="~/img/tyck_white.svg" style="padding-right: 20px;" /></div>
+        <div class="cel">
+            <h1>Hej - vad roligt att du vill bidra med dina synpunkter om våra stadsdelar!</h1>
+            <p>Vi tar fram planer för hur våra stadsdelar kan utvecklas när Umeå fortsätter att växa. Ingen känner en stadsdel så väl som du som bor där. Därför behöver vi din hjälp!</p>
+
+            <ul>
+                <li>
+                    Fråga 1<br />
+                    Var i din stadsdel trivs du bäst?
+                </li>
+                <li>
+                    Fråga 2<br />
+                    Vilka platser trivs du inte på?
+                </li>
+                <li>
+                    Fråga 3<br />
+                    Vad skulle du sakna mest, med din stadsdel, om du flyttade?
+                </li>
+                <li>
+                    Fråga 4<br />
+                    Vad skulle du önska för din stadsdel om 20 år?
+                </li>
+            </ul>
+            <br /><br />
+        </div>
+    </div>
+
+    <div class="center">
+        <button class="tabbutton PageMove" data-page="1">Start</button>
+        <button class="nobg CloseButton" style="display:none;">Avbryt</button>
+    </div>
+</div>
+
+
+<div class="page" data-page="1" data-normalquestion="false">
+    <div class="loc">Fråga 1 av 4</div>
+    <h1>Var i din stadsdel trivs du bäst?</h1>
+    <div id="map1" class="map" data-icon="icon-happy">
+        <div id="map1Banner" class="MapBanner">Zooma och klicka på kartan där du vill markera din plats</div>
+    </div>
+
+    <div class="dialogwrepper" id="Page1Addmarker">
+        <div class="dialog">
+            <h3>Varför trivs du bäst på denna plats?</h3>
+            <textarea id="Page1AddmarkerText"></textarea>
+            <br />
+            <button class="box hide" id="OrgClose" data-dontshowdialog="true">Stäng</button>
+            <button class="box save" id="Page1AddmarkerSave" disabled>Spara din plats</button>
+            <button class="nobg close" id="Page1AddmarkerClose">Avbryt</button>
+
+            <button class="nobg float-right nosidepadding delete hide" id="Page1AddmarkerDelete"><img src="~/img/delete.png" />Ta bort plats</button>
+        </div>
+    </div>
+
+    <div class="dialogwrepper" id="Page1Close">
+        <div class="dialog" style="max-width: 400px;">
+            <div class="center">
+                <table>
+                    <tr>
+                        <td><img src="~/img/icon-exclamation.svg" style="padding-right:10px;" /></td>
+                        <td><h3>Är du säker på att du vill avbryta? Din markerade plats och kommentar kommer inte att sparas.</h3></td>
+                    </tr>
+                </table>
+
+
+                <br />
+                <button class="box" id="Page1CloseOK">Ja - avbryt</button>
+                <button class="box" id="Page1CloseClose">Nej - gå tillbaka</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="MarkerButton1wrepper" class="MarkerButtonWrepper show">
+        <button class="MapMarker" id="MarkerButton1">Klicka här för att markera din plats</button>
+    </div>
+    <br /><br /><br /><br />
+
+    <div class="center PageButtons">
+        <button class="tabbutton PageMove" data-page="2" id="Page1Next">Nästa fråga</button>
+        <button class="nobg CloseButton">Avbryt</button>
+    </div>
+</div>
+
+<div class="page" data-page="2" data-normalquestion="false">
+    <div class="loc">Fråga 2 av 4</div>
+    <h1>Vilka platser trivs du inte på?</h1>
+    <div id="map1" class="map" data-icon="icon-sad">
+        <div id="map2Banner" class="MapBanner">Zooma och klicka på kartan där du vill markera din plats</div>
+    </div>
+
+    <div class="dialogwrepper" id="Page2Addmarker">
+        <div class="dialog">
+            <h3>Vilka platser trivs du inte på?</h3>
+            <textarea></textarea>
+            <br />
+            <button class="box hide" id="Page2OrgClose" data-dontshowdialog="true">Stäng</button>
+            <button class="box save" disabled>Spara din plats</button>
+            <button class="nobg close">Avbryt</button>
+
+            <button class="nobg float-right nosidepadding delete hide"><img src="~/img/delete.png" />Ta bort plats</button>
+        </div>
+    </div>
+
+    <div class="dialogwrepper" id="Page2Close">
+        <div class="dialog" style="max-width: 400px;">
+            <div class="center">
+                <table>
+                    <tr>
+                        <td><img src="~/img/icon-exclamation.svg" style="padding-right:10px;" /></td>
+                        <td> <h3>Är du säker på att du vill avbryta? Din markerade plats och kommentar kommer inte att sparas.</h3></td>
+                    </tr>
+                </table>
+
+                <br />
+                <button class="box ok">Ja - avbryt</button>
+                <button class="box close">Nej - gå tillbaka</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="MarkerButton2wrepper" class="MarkerButtonWrepper show">
+        <button class="MapMarker" id="MarkerButton2">Klicka här för att markera din plats</button>
+    </div>
+
+    <br /><br /><br /><br />
+
+    <div class="center PageButtons">
+        <button class="tabbutton PageMove" data-page="1">Föregående fråga</button>
+        <button class="tabbutton PageMove" id="Page2Next" data-page="3">Nästa fråga</button>
+        <button class="nobg CloseButton">Avbryt</button>
+    </div>
+</div>
+
+<div class="page page3" data-page="3">
+    <div class="loc">Fråga 3 av 4</div>
+    <h1>Vad skulle du sakna mest med din stadsdel om du flyttade?</h1>
+    <p>Du kan välja flera alternativ</p>
+
+    <label class="container">
+        <span class="text">Grannarna</span>
+        <input type="checkbox" value="Grannarna" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        Naturen
+        <input type="checkbox" value="Naturen" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        Lugnet
+        <input type="checkbox" value="Lugnet" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        Tryggheten
+        <input type="checkbox" value="Tryggheten" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        Uteplatserna/mötesplatser i utemiljön
+        <input type="checkbox" value="Uteplatserna/mötesplatser i utemiljön" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        Den speciella stämningen/andan/atmosfär som finns här
+        <input type="checkbox" value="Den speciella stämningen/andan/atmosfär som finns här" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        Servicen i närheten (tex butiker)
+        <input type="checkbox" value="Servicen i närheten (tex butiker)" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        Kulturutbudet (tex bibliotek, folkets hus osv)
+        <input type="checkbox" value="Kulturutbudet (tex bibliotek, folkets hus osv)" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        Föreningar och grupper i området
+        <input type="checkbox" value="Föreningar och grupper i området" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        Det egna hemmet
+        <input type="checkbox" value="Det egna hemmet" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        Annat
+        <input type="checkbox" value="Annat" id="Page3Annat" />
+        <span class="checkmark"></span>
+    </label>
+    <textarea id="Page3AnnatText" class="hide"></textarea>
+
+    <br />
+    <br />
+    <br />
+    <div class="center">
+        <button class="tabbutton PageMove" data-page="2">Föregående fråga</button>
+        <button class="tabbutton PageMove" id="Page3Next" data-page="4">Nästa fråga</button>
+        <button class="nobg CloseButton">Avbryt</button>
+    </div>
+</div>
+
+<div class="page" data-page="4">
+    <div class="loc">Fråga 4 av 4</div>
+    <h1>Vad skulle du önska för din stadsdel om 20 år?</h1>
+
+    <textarea id="Page4Text"></textarea>
+    <br />
+    <br />
+    <br />
+
+    <div class="center">
+        <button class="tabbutton PageMove" data-page="3">Föregående fråga</button>
+        <button class="tabbutton PageMove" id="Page4Next" data-page="5">Nästa fråga</button>
+        <button class="nobg CloseButton">Avbryt</button>
+    </div>
+</div>
+
+<div class="page" data-page="5">
+    <h1>Snart klart!</h1>
+    <p>Det vore toppen om du ger oss tre fakta om dig själv, men det är frivilligt. Tack!</p>
+
+    <h3 data-q="p5q0">1. Hur gammal är du?</h3>
+    <label class="container">
+        0-12
+        <input type="radio" name="år" value="0-12" data-q="p5q0" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        13-18
+        <input type="radio" name="år" value="13-18" data-q="p5q0" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        19-24
+        <input type="radio" name="år" value="19-24" data-q="p5q0" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        25-34
+        <input type="radio" name="år" value="25-34" data-q="p5q0" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        35-44
+        <input type="radio" name="år" value="35-44" data-q="p5q0" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        45-54
+        <input type="radio" name="år" value="45-54" data-q="p5q0" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        55-64
+        <input type="radio" name="år" value="55-64" data-q="p5q0" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        65-79
+        <input type="radio" name="år" value="65-79" data-q="p5q0" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        80+
+        <input type="radio" name="år" value="80+" data-q="p5q0" />
+        <span class="checkmark"></span>
+    </label>
+    <hr />
+
+    <h3 data-q="p5q1">2. Jag definierar mig som</h3>
+    <label class="container">
+        Kvinna
+        <input type="radio" name="Kon" value="Kvinna" data-q="p5q1" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        Man
+        <input type="radio" name="Kon" value="Man" data-q="p5q1" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        Jag identifierar mig varken som kvinna eller man
+        <input type="radio" name="Kon" value="Jag identifierar mig varken som kvinna eller man" data-q="p5q1" />
+        <span class="checkmark"></span>
+    </label>
+    <label class="container">
+        Vill ej svara
+        <input type="radio" name="Kon" value="Vill ej svara" data-q="p5q1" />
+        <span class="checkmark"></span>
+    </label>
+
+    <br /><br />
+    <p>3. Jag har postnummer <input type="text" name="postnr" value="" style="width: 47px;" data-qtext="postnummer" /></p>
+
+    <hr />
+
+    <p>
+        <label class="container">
+            Ja, mina synpunkter får visas på kommunens webbplats.
+            <input type="radio" value="OK" name="Public" data-qtext="Public" checked />
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">
+            Nej, mina synpunkter får inte visas på kommunens webbplats.
+            <input type="radio" value="Nej" name="Public" data-qtext="Public" />
+            <span class="checkmark"></span>
+        </label>
+    </p>
+
+    <br />
+    <br />
+    <br />
+    <div class="center">
+        <button class="tabbutton PageMove" data-page="4">Föregående fråga</button>
+        <button class="tabbutton PageMove" id="Page5Next" data-page="6">Slutför</button>
+        <button class="nobg CloseButton">Avbryt</button>
+    </div>
+</div>
+
+<div class="page page6 NoBG" data-page="6" data-normalquestion="false">
+    <div class="row">
+        <div class="cel icon"><img src="~/img/tyck_white.svg" style="padding-right: 20px;" /></div>
+        <div class="cel">
+            <div class="center">
+                <h1>Tack för att du bidragit med din synpunkter!</h1>
+                <br />
+                <a class="btn tabbutton" href="https://www.umea.se/4.13dd48ee16d5cbe956a7f93.html" style="width: 60%">Se hur andra har svarat</a>
+
+
+                <br /><br /><br />
+                <img src="~/img/TILLV Finansiering RGB Bla.png" class="Finansiering" />
+                <img src="~/img/Umea_kommun_RGB.png" class="Finansiering" />
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dialogwrepper" id="CloseEnkat">
+    <div class="dialog" style="max-width: 400px;">
+        <div class="center">
+            <h3>Är du säker på att du vill avbryta? Din svar kommer inte att sparas.</h3>
+            <h3>Stäng fliken för att stänga enkäten</h3>
+            <br />
+            <button class="box" id="CloseEnkatClose">Nej - gå tillbaka</button>
+        </div>
+    </div>
+</div>

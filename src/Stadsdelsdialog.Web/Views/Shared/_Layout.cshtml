@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="sv-se">
+<head prefix="og: http://ogp.me/ns#">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta name="HandheldFriendly" content="True">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="application-name" content="Tyck till om din stadsdel">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tyck till om din stadsdel">
+
+    <meta name="theme-color" content="#C0E4F9">
+
+    <meta name="msapplication-TileColor" content="#C0E4F9">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <link rel="preconnect" href="https://wms.umea.se" crossorigin />
+
+    <title>@ViewData["Title"]</title>
+    <meta itemprop="name" property="og:title" name="twitter:title" content="Tyck till om din stadsdel" />
+    <meta itemprop="description" property="og:description" name="twitter:description" content="Vi tar fram planer för hur våra stadsdelar kan utvecklas när Umeå fortsätter att växa. Ingen känner en stadsdel så väl som du som bor där. Därför behöver vi din hjälp!" />
+    <meta name="description" content="Vi tar fram planer för hur våra stadsdelar kan utvecklas när Umeå fortsätter att växa. Ingen känner en stadsdel så väl som du som bor där. Därför behöver vi din hjälp!" />
+
+    <meta itemprop="image" property="og:image" name="twitter:image" content="https://kartor.umea.se/projektkarta_enkat/img/Tyck_till_om_din_stadsdel.jpg" />
+    <meta property="og:image:alt" content="Tyck till om din stadsdel" />
+
+    <meta name="locale" content="sv-se" />
+    <meta name="site_name" content="Tyck till om din stadsdel" />
+
+
+    <link rel="shortcut icon" href="~/favicon.ico">
+    <meta property="og:site_name" content="Umeå Kommun Tyck till om din stadsdel" />
+
+    <link href="~/css/app.css" rel="stylesheet" asp-append-version="true" />
+</head>
+<body>
+    @RenderBody()
+
+    <script src="~/js/proj4-src.min.js" asp-append-version="true"></script>
+    <script src="~/js/ol.v5.3.0.min.js" asp-append-version="true"></script>
+    <script src="~/js/network.js" asp-append-version="true"></script>
+    <script src="~/js/map.js" asp-append-version="true"></script>
+    <script src="~/js/app.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

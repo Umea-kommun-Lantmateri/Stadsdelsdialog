@@ -1,0 +1,535 @@
+﻿html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+body {
+  padding: 0;
+  background: #C0E4F9;
+  /*font-family: verdana,sans-serif;*/
+  font-family: calibri, sans-serif;
+}
+.ol-overlaycontainer-stopevent {
+  display: none;
+}
+.page {
+  background: #FFF;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px;
+  border-radius: 10px;
+  margin-top: 40px;
+  position: relative;
+  display: none;
+}
+@media (max-width: 838px) {
+  .page {
+    position: fixed;
+    left: 5px;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    margin-top: 0;
+    padding-top: 5px;
+    overflow-y: scroll;
+  }
+  .page .PageButtons {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .page .map {
+    position: absolute !important;
+    left: 0;
+    /*top: 61px !important;*/
+    right: 0;
+    top: 88px;
+    bottom: 128px;
+    min-height: 1px !important;
+  }
+  .page .MarkerButtonWrepper {
+    bottom: 127px;
+  }
+}
+@media (max-width: 1036px) {
+  .page {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media (max-width: 838px) {
+  .page {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 15px;
+  }
+}
+.page.show {
+  display: block;
+}
+@media (max-height: 587px) {
+  .page .MarkerButtonWrepper {
+    bottom: 108px;
+  }
+}
+.page h1 {
+  /*font-weight: bold;*/
+  /*font-size: 35px;*/
+  font-size: 27px;
+  font-weight: 700;
+  padding-bottom: 20px;
+}
+.page h3 {
+  padding-bottom: 10px;
+}
+.page p {
+  padding-bottom: 20px;
+}
+.page ul {
+  padding: 0;
+}
+.page ul li {
+  font-weight: bold;
+  list-style: none;
+  padding-bottom: 15px;
+}
+.page table td {
+  vertical-align: top;
+}
+.page .loc {
+  font-weight: bold;
+  font-size: 12px;
+  padding-bottom: 7px;
+}
+.page .MapBanner {
+  position: absolute;
+  left: -1px;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  background: #333333;
+  color: #FFF;
+  font-style: italic;
+  padding: 10px;
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-size: 10px;
+  transform: translateY(110%);
+  transition: transform 0.33s cubic-bezier(0, 0, 0.3, 1);
+}
+.page .MapBanner.show {
+  transform: none;
+}
+.page .map {
+  position: relative;
+  border-radius: 10px;
+  width: 100%;
+  min-height: 500px;
+  /*border: 1px #333333 solid;*/
+  overflow: hidden;
+}
+.page .map canvas {
+  border-radius: 10px;
+}
+@media (max-height: 587px) {
+  .page .map {
+    bottom: 108px;
+  }
+}
+.page .temp {
+  color: red;
+}
+.page textarea {
+  display: block;
+  width: 100%;
+  height: 150px;
+  border: 1px #d4d4d4 solid;
+  border-radius: 10px;
+}
+.page textarea:focus {
+  outline-color: #c7c7c7;
+}
+.page textarea.hide {
+  display: none;
+}
+.page input {
+  border: 1px #d4d4d4 solid;
+  padding: 3px;
+}
+.page input:focus {
+  outline-color: #c7c7c7;
+}
+.page.NoBG {
+  background: #C0E4F9;
+}
+.center {
+  text-align: center;
+}
+button,
+.btn {
+  background: #016D1F;
+  border: 0;
+  padding-left: 45px;
+  padding-top: 15px;
+  padding-right: 45px;
+  padding-bottom: 15px;
+  margin-bottom: 5px;
+  color: #FFF;
+  border-radius: 23px;
+  cursor: pointer;
+  text-decoration: none;
+}
+button:hover,
+.btn:hover {
+  background: #013a11;
+}
+button:disabled,
+.btn:disabled {
+  background: #D5D5D5;
+  cursor: default;
+}
+button.nobg,
+.btn.nobg {
+  background: #FFF;
+  color: #000;
+  text-decoration: underline;
+}
+button.float-right,
+.btn.float-right {
+  float: right;
+}
+button.nosidepadding,
+.btn.nosidepadding {
+  padding-left: 0;
+  padding-right: 0;
+}
+button.hide,
+.btn.hide {
+  display: none;
+}
+button.MapMarker,
+.btn.MapMarker {
+  background: #333333;
+  color: #FFF;
+  border-radius: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+button.MapMarker:hover,
+.btn.MapMarker:hover {
+  background: #1a1a1a;
+}
+button.box,
+.btn.box {
+  background: #333333;
+  color: #FFF;
+  border-radius: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+button.box:hover,
+.btn.box:hover {
+  background: #1a1a1a;
+}
+button.box:disabled,
+.btn.box:disabled {
+  background: #D5D5D5;
+  cursor: default;
+}
+button img,
+.btn img {
+  width: 30px;
+  vertical-align: middle;
+}
+@media (max-width: 384px) {
+  button.PageMove,
+  .btn.PageMove {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+@media (max-width: 329px) {
+  button.PageMove,
+  .btn.PageMove {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+.dialogwrepper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1001;
+  /*background: rgba(0,0,0,.5);*/
+  background: rgba(142, 142, 142, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.dialogwrepper.show {
+  display: block;
+}
+.dialogwrepper .dialog {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 500px;
+  background: #FFF;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px #9A9A9A solid;
+  border-radius: 10px;
+  padding: 25px;
+  color: #343434;
+}
+.dialogwrepper .dialog h3 {
+  font-weight: bold;
+  font-size: 13px;
+}
+@media (max-width: 430px) {
+  .dialogwrepper .dialog .close {
+    padding-left: 33px;
+    padding-right: 10px;
+  }
+}
+@media (max-width: 320px) {
+  .dialogwrepper .dialog {
+    transform: none;
+    display: block;
+    position: fixed;
+    left: 5px;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+  }
+}
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 18px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Hide the browser's default checkbox */
+  /* Create a custom checkbox */
+  /* On mouse-over, add a grey background color */
+  /* When the checkbox is checked, add a blue background */
+  /* Create the checkmark/indicator (hidden when not checked) */
+  /* Show the checkmark when checked */
+  /* Style the checkmark/indicator */
+}
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.container .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border-radius: 3px;
+  background-color: #eee;
+}
+.container input[type=radio] ~ .checkmark {
+  border-radius: 50%;
+}
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+.container input:checked ~ .checkmark {
+  background-color: #016D1F;
+}
+.container input:checked ~ .text {
+  font-weight: bold;
+}
+.container .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+.container input[type=checkbox] ~ .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.container input[type=radio] ~ .checkmark:after {
+  top: 6px;
+  left: 6px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: white;
+}
+.MarkerButtonWrepper {
+  position: absolute;
+  bottom: 170px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  display: none;
+}
+.MarkerButtonWrepper.show {
+  display: block;
+}
+.row {
+  display: flex;
+}
+.row .cel {
+  display: inline-block;
+}
+@media (max-width: 838px) {
+  .page1 .row,
+  .page6 .row {
+    display: block;
+  }
+  .page1 img,
+  .page6 img {
+    height: 100px;
+  }
+}
+.Finansiering {
+  height: 70px;
+  padding: 30px;
+}

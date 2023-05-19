@@ -1,0 +1,469 @@
+﻿@import "reset";
+
+body {
+    padding: 0;
+    background: #C0E4F9;
+    /*font-family: verdana,sans-serif;*/
+    font-family: calibri,sans-serif;
+}
+
+.ol-overlaycontainer-stopevent {
+    display: none;
+}
+
+.page {
+    background: #FFF;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 40px;
+    border-radius: 10px;
+    margin-top: 40px;
+    position: relative;
+    display: none;
+
+    @media (max-width: 838px) {
+        position: fixed;
+        left: 5px;
+        top: 5px;
+        right: 5px;
+        bottom: 5px;
+        margin-top: 0;
+        padding-top: 5px;
+        overflow-y: scroll;
+
+        .PageButtons {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .map {
+            position: absolute !important;
+            left: 0;
+            /*top: 61px !important;*/
+            right: 0;
+            top: 88px;
+            bottom: 128px;
+            min-height: 1px !important;
+        }
+
+        .MarkerButtonWrepper {
+            bottom: 127px;
+        }
+    }
+
+    @media(max-width:1036px) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    @media(max-width:838px) {
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 15px;
+    }
+
+    &.show {
+        display: block;
+    }
+
+    .MarkerButtonWrepper {
+        @media (max-height:587px) {
+            bottom: 108px;
+        }
+    }
+
+    h1 {
+        /*font-weight: bold;*/
+        /*font-size: 35px;*/
+        font-size: 27px;
+        font-weight: 700;
+        padding-bottom: 20px;
+    }
+
+    h3 {
+        padding-bottom: 10px;
+    }
+
+    p {
+        padding-bottom: 20px;
+    }
+
+
+    ul {
+        padding: 0;
+
+        li {
+            font-weight: bold;
+            list-style: none;
+            padding-bottom: 15px;
+        }
+    }
+
+
+    table {
+        td {
+            vertical-align: top;
+        }
+    }
+
+
+
+    .loc {
+        font-weight: bold;
+        font-size: 12px;
+        padding-bottom: 7px;
+    }
+
+
+
+    .MapBanner {
+        position: absolute;
+        left: -1px;
+        bottom: 0;
+        right: 0;
+        z-index: 1000;
+        background: #333333;
+        color: #FFF;
+        font-style: italic;
+        padding: 10px;
+        text-align: center;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        font-size: 10px;
+        transform: translateY(110%);
+        transition: transform 0.33s cubic-bezier(0, 0, 0.3, 1);
+
+        &.show {
+            transform: none;
+        }
+    }
+
+    .map {
+        position: relative;
+        border-radius: 10px;
+        width: 100%;
+        min-height: 500px;
+        /*border: 1px #333333 solid;*/
+        overflow: hidden;
+
+
+        canvas {
+            border-radius: 10px;
+        }
+
+        @media (max-height:587px) {
+            bottom: 108px;
+        }
+    }
+
+
+
+    .temp {
+        color: red;
+    }
+
+    textarea {
+        display: block;
+        width: 100%;
+        height: 150px;
+        border: 1px darken( #EDEDED,10%) solid;
+        border-radius: 10px;
+
+        &:focus {
+            outline-color: darken(#EDEDED,15%);
+        }
+
+        &.hide {
+            display: none;
+        }
+    }
+
+    input {
+        border: 1px darken( #EDEDED,10%) solid;
+        padding: 3px;
+
+
+        &:focus {
+            outline-color: darken(#EDEDED,15%);
+        }
+    }
+
+    &.NoBG {
+        background: #C0E4F9;
+    }
+}
+
+.center {
+    text-align: center;
+}
+
+button, .btn {
+    background: #016D1F;
+    border: 0;
+    padding-left: 45px;
+    padding-top: 15px;
+    padding-right: 45px;
+    padding-bottom: 15px;
+    margin-bottom: 5px;
+    color: #FFF;
+    border-radius: 23px;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        background: darken( #016D1F,10%);
+    }
+
+    &:disabled {
+        background: #D5D5D5;
+        cursor: default;
+    }
+
+    &.nobg {
+        background: #FFF;
+        color: #000;
+        text-decoration: underline;
+    }
+
+    &.float-right {
+        float: right;
+    }
+
+    &.nosidepadding {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    &.hide {
+        display: none;
+    }
+
+
+
+    &.MapMarker {
+        background: #333333;
+        color: #FFF;
+        border-radius: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        &:hover {
+            background: darken( #333333,10%);
+        }
+    }
+
+    &.box {
+        background: #333333;
+        color: #FFF;
+        border-radius: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        &:hover {
+            background: darken( #333333,10%);
+        }
+
+        &:disabled {
+            background: #D5D5D5;
+            cursor: default;
+        }
+    }
+
+    img {
+        width: 30px;
+        vertical-align: middle;
+    }
+
+    @media(max-width:384px) {
+        &.PageMove {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
+
+    @media(max-width:329px) {
+        &.PageMove {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+}
+
+.dialogwrepper {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1001;
+    /*background: rgba(0,0,0,.5);*/
+    background: rgba(142, 142, 142, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+
+    &.show {
+        display: block;
+    }
+
+
+    .dialog {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        max-width: 500px;
+        background: #FFF;
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px #9A9A9A solid;
+        border-radius: 10px;
+        padding: 25px;
+        color: #343434;
+
+        h3 {
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        @media(max-width:430px) {
+            .close {
+                padding-left: 33px;
+                padding-right: 10px;
+            }
+        }
+
+        @media (max-width:320px) {
+            transform: none;
+            display: block;
+            position: fixed;
+            left: 5px;
+            top: 5px;
+            right: 5px;
+            bottom: 5px;
+        }
+    }
+}
+
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 18px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* Hide the browser's default checkbox */
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+    /* Create a custom checkbox */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        border-radius: 3px;
+        background-color: #eee;
+    }
+
+    input[type=radio] ~ .checkmark {
+        border-radius: 50%;
+    }
+    /* On mouse-over, add a grey background color */
+    &:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+    /* When the checkbox is checked, add a blue background */
+    input:checked ~ .checkmark {
+        background-color: #016D1F;
+    }
+
+    input:checked ~ .text {
+        font-weight: bold;
+    }
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+    /* Show the checkmark when checked */
+    input:checked ~ .checkmark:after {
+        display: block;
+    }
+    /* Style the checkmark/indicator */
+    input[type=checkbox] ~ .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    input[type=radio] ~ .checkmark:after {
+        top: 6px;
+        left: 6px;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: white;
+    }
+}
+
+.MarkerButtonWrepper {
+    position: absolute;
+    bottom: 170px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    display: none;
+
+    &.show {
+        display: block;
+    }
+}
+
+
+
+
+.row {
+    display: flex;
+
+    .cel {
+        display: inline-block;
+    }
+}
+
+.page1, .page6 {
+    @media (max-width:838px) {
+        .row {
+            display: block;
+        }
+
+        img {
+            height: 100px;
+        }
+    }
+}
+
+.Finansiering {
+    height: 70px;
+    padding: 30px;
+}

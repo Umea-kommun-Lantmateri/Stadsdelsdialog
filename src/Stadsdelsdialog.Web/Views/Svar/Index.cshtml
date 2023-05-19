@@ -1,0 +1,44 @@
+﻿@model List<Stadsdelsdialog.Domain.Answer>
+
+@{
+    Layout = "_Layout2";
+
+}
+
+@section CSS {
+    <link href="~/css/Svar.css" rel="stylesheet" asp-append-version="true" />
+}
+
+<div class="center">
+    <br /><br /><br />
+    <h1>Detta skulle vi önska för vår stadsdel om 20 år</h1>
+    <br /><br /><br />
+    <div id="pratbubblor">
+        @{
+            foreach (var item in Model)
+            {
+
+                <div class="pratbubbla" data-stadsdel="@item.Stadsdel">
+                    <div class="text">@item.value</div>
+                    
+                    @if (String.IsNullOrWhiteSpace(item.Stadsdel) == false)
+                    {
+                        <div class="stadsdel">@item.Stadsdel</div>
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<div class="Stadsdelar-wrepper">
+    <div class="body">
+        <select id="Stadsdelar" aria-label="Stadsdel"></select>
+    </div>
+</div>
+
+
+@section JS {
+    <script src="~/js/network.js" asp-append-version="true"></script>
+    <script src="~/js/svar.js" asp-append-version="true"></script>
+}

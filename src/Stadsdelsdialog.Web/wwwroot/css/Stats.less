@@ -1,0 +1,96 @@
+﻿@import "reset";
+
+body {
+    padding: 0;
+    background: #d1e8ff; /*#C0E4F9;*/
+    /*font-family: verdana,sans-serif;*/
+    font-family: calibri,sans-serif;
+}
+
+.center {
+    text-align: center;
+}
+
+h1 {
+    font-size: 30px;
+    padding-top: 25px;
+    font-weight: bold;
+}
+
+.pros {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.typ {
+    margin-top: 5px;
+}
+
+img {
+    height: 68px;
+
+    @media (max-height:556px) {
+        height: 55px;
+    }
+
+    @media (max-height:536px) {
+        height: 45px;
+    }
+
+    @media (max-height:514px) {
+        height: 35px;
+    }
+}
+
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 55px;
+
+    .cel {
+        /*border: 1px red solid;*/
+        display: block;
+        margin-right: 55px;
+        margin-bottom: 55px;
+        width: 170px;
+        text-align: center;
+        text-wrap: normal;
+    }
+
+    @media (max-width:865px) {
+        margin-top: 10px;
+        padding-bottom: 50px;
+
+        .cel {
+            margin-right: 0;
+            width: 140px
+        }
+    }
+
+    @media (max-width :433px) {
+        .cel {
+            width: 130px;
+        }
+    }
+
+    @media (max-height:508px) {
+        .cel {
+            font-size: 15px;
+            margin-bottom: 0px;
+        }
+    }
+}
+
+@import "Stadsdelar-wrepper";
+
+.Stadsdelar-wrepper {
+    margin-bottom: 30px;
+
+    @media (max-height:449px){
+        margin-bottom: 20px;
+    }
+}
