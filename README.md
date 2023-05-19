@@ -54,14 +54,14 @@ Ett mail skickas till mailadresserna (komma separerade) som finns i `Mail_To` om
 ```
 
 ## Stadsdelar
-GeoJSON fil med alla stadsdelar används föt att kategorisera dem i rätt stadsdel som man kan filtrera på sen.
-byt ut filen [Stadsdelar.json](/src/Stadsdelsdialog.Web/wwwroot/data/Stadsdelar.json")
+GeoJSON fil med alla stadsdelar används föt att kategorisera dem i rätt stadsdel som man kan filtrera på.
+Byt ut filen [Stadsdelar.json](/src/Stadsdelsdialog.Web/wwwroot/data/Stadsdelar.json")
 
 > GeoJSON filerna måste vara i SWEREF 99 20 TM (EPSG:3006)
 
 ## Bilder
 
-I detta projekt ingår ingen medföljande bildmaterial, vilket innebär att ni själva behöver skapa och tillhandahålla eventuella bilder.
+I detta projekt ingår inget medföljande bildmaterial, vilket innebär att ni själva behöver skapa och tillhandahålla eventuella bilder.
 
 >För Admin kolla vilka bilder som måste finnas se [bilder](/src/Stadsdelsdialog.Admin/wwwroot/img/README.md)
 >För Web kolla vilka bilder som måste finnas se [bilder](/src/Stadsdelsdialog.Web/wwwroot/img/README.md)
